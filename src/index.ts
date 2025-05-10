@@ -1,6 +1,6 @@
 import { Application } from "pixi.js";
 import { RootNode } from "src/node/RootNode";
-import { FPSCounter } from "./fps/FPSCounter";
+import { FPSCounter } from "src/fps/FPSCounter";
 
 function main(): void {
 	// Get the canvas element
