@@ -1,5 +1,6 @@
 import { Application } from "pixi.js";
 import { RootNode } from "src/node/RootNode";
+import { FPSCounter } from "./fps/FPSCounter";
 
 function main(): void {
 	const app = new Application<HTMLCanvasElement>({
@@ -13,6 +14,9 @@ function main(): void {
 	document.body.appendChild(app.view);
 
 	const rootNode = new RootNode(app, window);
+
+	const fpsCounter = new FPSCounter(60);
+	rootNode.addChild(fpsCounter);
 
 	rootNode.start();
 }
