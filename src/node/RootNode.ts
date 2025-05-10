@@ -3,9 +3,9 @@ import { Node } from "./Node";
 
 export class RootNode<T extends ICanvas = ICanvas> extends Node {
 	private readonly _application: Application<T>;
-	private readonly _window: Window & typeof globalThis;
+	private readonly _window: Window;
 
-	public constructor(application: Application<T>, window: Window & typeof globalThis) {
+	public constructor(application: Application<T>, window: Window) {
 		super();
 
 		this._application = application;
