@@ -1,4 +1,5 @@
 import { Application } from "pixi.js";
+import { MainMenuScene } from "src/scenes/mainmenu/MainMenuScene";
 import { RootNode } from "src/node/RootNode";
 import { FPSCounter } from "src/fps/FPSCounter";
 
@@ -16,6 +17,9 @@ function main(): void {
 	});
 
 	const rootNode = new RootNode(app, window);
+
+	const mainMenu = new MainMenuScene();
+	rootNode.addChild(mainMenu);
 
 	const fpsCounter = new FPSCounter(60);
 	rootNode.addChild(fpsCounter);
