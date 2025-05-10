@@ -28,6 +28,8 @@ export class Node extends Container implements INode {
 				node.start();
 			}
 		}
+
+		this.resize(this.width, this.height);
 	}
 
 	public stop(): void {
