@@ -3,15 +3,17 @@ import { RootNode } from "src/node/RootNode";
 import { FPSCounter } from "./fps/FPSCounter";
 
 function main(): void {
+	// Get the canvas element
+	const canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
+
 	const app = new Application<HTMLCanvasElement>({
 		backgroundColor: 0x333333,
 		resizeTo: window,
 		antialias: true,
 		autoDensity: true,
-		resolution: window.devicePixelRatio || 1
+		resolution: window.devicePixelRatio || 1,
+		view: canvas
 	});
-
-	document.body.appendChild(app.view);
 
 	const rootNode = new RootNode(app, window);
 
