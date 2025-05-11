@@ -2,6 +2,7 @@ import { Application } from "pixi.js";
 import { MainMenuScene } from "src/scenes/mainmenu/MainMenuScene";
 import { RootNode } from "src/node/RootNode";
 import { FPSCounter } from "src/fps/FPSCounter";
+import { SceneManager } from "./scenes/SceneManager";
 
 function main(): void {
 	// Get the canvas element
@@ -18,8 +19,10 @@ function main(): void {
 
 	const rootNode = new RootNode(app, window);
 
+	const sceneManager = new SceneManager(rootNode, app.renderer);
+
 	const mainMenu = new MainMenuScene();
-	rootNode.addChild(mainMenu);
+	sceneManager.showScene(mainMenu);
 
 	const fpsCounter = new FPSCounter(60);
 	rootNode.addChild(fpsCounter);
