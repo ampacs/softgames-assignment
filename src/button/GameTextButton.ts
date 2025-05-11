@@ -1,5 +1,5 @@
 import { ButtonOptions, FancyButton } from "@pixi/ui";
-import { ITextStyle, Text, TextStyle } from "pixi.js";
+import { IDestroyOptions, ITextStyle, Text, TextStyle } from "pixi.js";
 import { Node } from "src/node/Node";
 
 const defaultTextStyle: Partial<ITextStyle> = {
@@ -88,5 +88,14 @@ export class GameTextButton extends Node {
 		});
 
 		this.addChild(this._button);
+	}
+
+	public destroy(options?: IDestroyOptions | boolean): void {
+		this._button.enabled = false;
+		this.removeChild(this._button);
+		// FIXME: buttons might still be animating when they're about to be destroyed
+		setTimeout(() => this._button.destroy(true));
+
+		super.destroy(options);
 	}
 }
