@@ -18,6 +18,7 @@ const handleIndexHtml: Plugin = {
 };
 
 export default defineConfig({
+	base: "https://ampacs.github.io/softgames-assignment/",
 	root: "./",
 	publicDir: "public",
 	build: {
