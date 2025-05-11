@@ -1,5 +1,6 @@
 import { Application, ICanvas } from "pixi.js";
 import { Node } from "./Node";
+import gsap from "gsap";
 
 export class RootNode<T extends ICanvas = ICanvas> extends Node {
 	private readonly _application: Application<T>;
@@ -10,6 +11,8 @@ export class RootNode<T extends ICanvas = ICanvas> extends Node {
 
 		this._application = application;
 		this._window = window;
+
+		gsap.ticker.remove(gsap.updateRoot);
 	}
 
 	public override start() {
@@ -36,5 +39,7 @@ export class RootNode<T extends ICanvas = ICanvas> extends Node {
 
 	public override update(): void {
 		super.update(this._application.ticker.deltaMS / 1_000);
+
+		gsap.updateRoot(this._application.ticker.lastTime / 1_000);
 	}
 }
