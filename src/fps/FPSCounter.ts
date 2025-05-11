@@ -39,6 +39,7 @@ export class FPSCounter extends Node {
 		for (const frameDeltaTime of this._frameDeltaTimeBuffer) {
 			accumulatedFrameTime += frameDeltaTime;
 		}
+		accumulatedFrameTime -= deltaTime;
 
 		const fps = Math.round(this._samplesCount / accumulatedFrameTime);
 		this._text.text = `FPS: ${fps.toString()}`;
