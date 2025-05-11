@@ -1,8 +1,10 @@
 import { Node } from "src/node/Node";
-import { Text, TextStyle } from "pixi.js";
+import { IRenderer, Text, TextStyle } from "pixi.js";
 import { List } from "@pixi/ui";
 import { GameTextButton } from "src/button/GameTextButton";
 import { MainMenuOption, MainMenuOptions } from "./MainMenuOptions";
+import { SceneManager } from "../SceneManager";
+import { AceOfShadowsScene } from "../aceofshadows/AceOfShadowsScene";
 
 /**
  * Main Menu scene with options to navigate to each assignment task
@@ -11,8 +13,14 @@ export class MainMenuScene extends Node {
 	private readonly _title: Text;
 	private readonly _menuList: List;
 
-	public constructor() {
+	private readonly _renderer: IRenderer;
+	private readonly _sceneManager: SceneManager;
+
+	public constructor(renderer: IRenderer, sceneManager: SceneManager) {
 		super();
+
+		this._renderer = renderer;
+		this._sceneManager = sceneManager;
 
 		// create title
 		const titleStyle = new TextStyle({
@@ -61,6 +69,23 @@ export class MainMenuScene extends Node {
 	}
 
 	private onMenuItemClick(option: MainMenuOption): void {
-		this.emit("menuSelect", option);
+		// create and show the selected scene
+		switch (option) {
+		case MainMenuOption.ACE_OF_SHADOWS: {
+			const scene = new AceOfShadowsScene(this._renderer, this._sceneManager);
+
+			this._sceneManager.showScene(scene);
+			break;
+		}
+		case MainMenuOption.MAGIC_WORDS:
+			// TODO: Implement Magic Words scene
+			console.log("Magic Words scene not yet implemented");
+			break;
+
+		case MainMenuOption.PHOENIX_FLAME:
+			// TODO: Implement Phoenix Flame scene
+			console.log("Phoenix Flame scene not yet implemented");
+			break;
+		}
 	}
 }

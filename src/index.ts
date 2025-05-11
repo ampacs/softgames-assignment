@@ -21,7 +21,7 @@ function main(): void {
 
 	const sceneManager = new SceneManager(rootNode, app.renderer);
 
-	const mainMenu = new MainMenuScene();
+	const mainMenu = new MainMenuScene(app.renderer, sceneManager);
 	sceneManager.showScene(mainMenu);
 
 	const fpsCounter = new FPSCounter(60);
