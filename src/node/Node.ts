@@ -132,7 +132,9 @@ export class Node extends Container implements INode {
 
 	public override removeChildren(beginIndex?: number, endIndex?: number): DisplayObject[] {
 		const start = beginIndex ?? 0;
-		const end = endIndex ?? this.children.length - 1;
+		const end = endIndex !== undefined && endIndex < this.children.length
+			? endIndex
+			: this.children.length - 1;
 
 		for (let i = start; i <= end; i++) {
 			const child = super.getChildAt(i);
