@@ -92,9 +92,8 @@ export class GameTextButton extends Node {
 
 	public destroy(options?: IDestroyOptions | boolean): void {
 		this._button.enabled = false;
+		// FIXME: memory leak, buttons might still be animating when they're about to be destroyed
 		this.removeChild(this._button);
-		// FIXME: buttons might still be animating when they're about to be destroyed
-		setTimeout(() => this._button.destroy(true));
 
 		super.destroy(options);
 	}
